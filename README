@@ -1,0 +1,11 @@
+This a modified version of C'Ts UMBPCI for the MiSTeR ao486. It turns the
+unused memory between 640K and 1M into UMBs. You will need himem.sys or
+another driver providing the UMB API. 
+
+Example config.sys entry:
+
+device=c:\util\umbmist.sys /i=d000-efff
+
+Use openwatcom to rebuild from source.
+
+umbpci.doc contains the documentation for the original program in German.

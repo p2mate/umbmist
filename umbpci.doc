@@ -1,0 +1,39 @@
+Abgerechnet, c't 11/95 S.374 /as
+*****************************************************************
+Dateien
+UMBPCI.ASM     Source fÅr TASM 3.0
+UMBPCI.SYS     lauffÑhiger Treiber
+UMBPCI.DOC     dies hier
+
+
+UMBPCI ist ein Nachbrenner des verbreiteten UMB-Treibers
+UMBADD.SYS, erweitert fÅr Intel-PCI-ChipsÑtze Saturn, Mercury,
+Neptun und - etwas eingeschrÑnkt - Triton. Die neue Version
+wertet analog zum EMM386.SYS Kommandozeilenparameter /I=xxxx-yyyy
+aus. xxx: Start-, yyyy:Endadresse eines UMB-Blocks.
+
+Der Treiber ist hinter HIMEM.SYS und vor DOS=High,UMB zu laden!
+
+Der Benutzer ist dafÅr verantwortlich, freie Bereiche zwischen
+C000h und EFFFh zu deklarieren. Soll Windows den Boxen EMM
+anbieten kînnen, mu· man 64 KByte Platz fÅr den Seitenrahmen
+(Frame) lassen. Windows 95 weigert sich allerdings, bei
+
+DEVICE=UMBPCI.SYS /I=CC00-CFFF /I=E000-EFFF
+
+den Rahmen fÅr D000h einzurichten, es klappt nur, wenn man den
+ersten Block weglÑ·t.
+
+Der Bereich ab E800h ist etwas kritisch, hier ist ein Teil des
+BIOS untergebracht, das oft nicht Åberblendet werden darf, etwa
+bei benutztem NCR-SCSI-BIOS (SDMS).
+
+Beim Triton ist kein ISA-DMA auf den Bereich zwischen C000h und
+DFFFh mîglich. Es dÅrfen daher weder Floppy-Zugriffe noch andere
+ISA-Busmaster auf den UMB-bereich zugreifen. Smartdrive mu· mit
+Parameter /L gezwungen werden, keine UMBs zu benutzen.
+
+
+
+
+
